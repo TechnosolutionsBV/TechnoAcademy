@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curso Reparacion de Celulares Nivel I — TechnoAcademy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+
+  :root {
+    --white:     #ffffff;
+    --bg:        #f7f7f5;
+    --border:    #e8e8e4;
+    --border2:   #d0d0ca;
+    --text:      #111111;
+    --text2:     #444444;
+    --text3:     #888888;
+    --orange:    #f45c1b;
+    --orange2:   #ff7a3d;
+    --radius:    12px;
+    --radius-lg: 20px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  .section   { padding: 88px 0; }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 13px 0;
+  }
+  .topbar .container { display: flex; align-items: center; justify-content: space-between; }
+
+  .topbar-brand {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .topbar-logo {
+    width: 38px; height: 38px;
+    object-fit: contain;
+  }
+  .topbar-name {
+    font-size: 1rem; font-weight: 900;
+    letter-spacing: -0.02em; color: var(--text);
+  }
+  .topbar-name span { color: var(--orange); }
+
+  /* ── BOTONES ── */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--orange);
+    color: #fff;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.95rem; font-weight: 800;
+    padding: 14px 30px;
+    border-radius: 50px;
+    border: none; cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.18s, box-shadow 0.2s;
+    box-shadow: 0 4px 18px rgba(244,92,27,0.22);
+  }
+  .btn:hover { background: var(--orange2); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(244,92,27,0.3); }
+  .btn.large { font-size: 1.1rem; padding: 18px 48px; }
+  .btn-sm    { font-size: 0.82rem; padding: 10px 20px; }
+
+  /* ── PILL ── */
+  .pill {
+    display: inline-block;
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--orange);
+    background: rgba(244,92,27,0.08);
+    border: 1px solid rgba(244,92,27,0.18);
+    border-radius: 30px;
+    padding: 5px 14px; margin-bottom: 18px;
+  }
+
+  /* ── HERO ── */
+  .hero { padding: 80px 0 72px; border-bottom: 1px solid var(--border); }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 60px; align-items: center;
+  }
+  .hero-eyebrow {
+    font-size: 0.76rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text3); margin-bottom: 16px;
+  }
+  .hero-title {
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 900; line-height: 1.05;
+    letter-spacing: -0.03em; color: var(--text);
+    margin-bottom: 20px;
+  }
+  .hero-title .orange { color: var(--orange); }
+  .hero-desc {
+    font-size: 1.05rem; color: var(--text2);
+    line-height: 1.72; margin-bottom: 36px; max-width: 480px;
+  }
+
+  /* hero card */
+  .hero-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px 26px;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.06);
+  }
+  .hero-card-label {
+    font-size: 0.68rem; font-weight: 800;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 20px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .card-row {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 0; border-bottom: 1px solid var(--border);
+  }
+  .card-row:last-of-type { border-bottom: none; }
+  .card-icon {
+    width: 34px; height: 34px; flex-shrink: 0;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--orange); font-size: 0.85rem;
+  }
+  .card-row-label {
+    font-size: 0.7rem; font-weight: 600;
+    color: var(--text3); text-transform: uppercase;
+    letter-spacing: 0.06em; margin-bottom: 2px;
+  }
+  .card-row-value { font-size: 0.92rem; font-weight: 700; color: var(--text); line-height: 1.4; }
+  .hero-card .btn { width: 100%; margin-top: 20px; justify-content: center; font-size: 0.9rem; }
+
+  /* ── STATS ── */
+  .stats { background: var(--bg); border-bottom: 1px solid var(--border); }
+  .stats-row { display: grid; grid-template-columns: repeat(3,1fr); }
+  .stat { text-align: center; padding: 32px 20px; border-right: 1px solid var(--border); }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-size: 2.2rem; font-weight: 900;
+    color: var(--text); letter-spacing: -0.04em; display: block;
+  }
+  .stat-num .orange { color: var(--orange); }
+  .stat-label { font-size: 0.83rem; color: var(--text3); font-weight: 500; margin-top: 4px; }
+
+  /* ── SEC HEAD ── */
+  .sec-head { margin-bottom: 48px; }
+  .sec-title {
+    font-size: clamp(1.8rem,3.5vw,2.5rem);
+    font-weight: 900; letter-spacing: -0.03em;
+    color: var(--text); line-height: 1.1; margin-bottom: 12px;
+  }
+  .sec-sub { font-size: 1rem; color: var(--text2); max-width: 520px; line-height: 1.65; }
+
+  /* ── ACORDEON MODULOS ── */
+  .modulos { background: var(--white); }
+  .modulos-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .mod-item {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .mod-item.open { border-color: var(--border2); }
+
+  .mod-trigger {
+    width: 100%; background: none; border: none;
+    display: flex; align-items: center; gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer; text-align: left;
+    transition: background 0.18s;
+  }
+  .mod-trigger:hover { background: var(--bg); }
+  .mod-item.open .mod-trigger { background: var(--bg); }
+
+  .mod-bar {
+    width: 4px; flex-shrink: 0;
+    height: 36px; border-radius: 4px;
+    background: var(--border2);
+    transition: background 0.2s;
+  }
+  .mod-item.open .mod-bar { background: var(--orange); }
+
+  .mod-num {
+    font-size: 0.68rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text3); white-space: nowrap; min-width: 82px;
+  }
+  .mod-item.open .mod-num { color: var(--orange); }
+
+  .mod-title {
+    font-size: 0.98rem; font-weight: 800;
+    color: var(--text); flex: 1;
+  }
+
+  .mod-chevron {
+    width: 30px; height: 30px; flex-shrink: 0;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text3); font-size: 0.75rem;
+    transition: transform 0.28s ease, background 0.18s;
+    margin-left: auto;
+  }
+  .mod-item.open .mod-chevron {
+    transform: rotate(180deg);
+    background: rgba(244,92,27,0.08);
+    border-color: rgba(244,92,27,0.2);
+    color: var(--orange);
+  }
+
+  .mod-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .mod-item.open .mod-body { max-height: 500px; }
+
+  .mod-body-inner {
+    padding: 18px 24px 24px 60px;
+    border-top: 1px solid var(--border);
+  }
+  .mod-topics { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .mod-topics li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 0.9rem; color: var(--text2); line-height: 1.45;
+  }
+  .mod-topics li i {
+    color: var(--orange); font-size: 0.5rem;
+    margin-top: 6px; flex-shrink: 0;
+  }
+
+  /* ── INSTRUCTOR ── */
+  .instructor {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .instructor-inner {
+    display: grid; grid-template-columns: 220px 1fr;
+    gap: 52px; align-items: center;
+  }
+  .instructor-photo {
+    width: 220px; height: 220px;
+    border-radius: var(--radius-lg);
+    object-fit: cover; object-position: top center;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    display: block;
+  }
+  .instructor-name {
+    font-size: 1.9rem; font-weight: 900;
+    letter-spacing: -0.03em; color: var(--text); margin-bottom: 6px;
+  }
+  .instructor-role {
+    font-size: 0.85rem; color: var(--orange);
+    font-weight: 700; margin-bottom: 18px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .instructor-bio {
+    font-size: 0.97rem; color: var(--text2);
+    line-height: 1.72; max-width: 500px;
+  }
+
+  /* ── CERT ── */
+  .cert { background: var(--white); }
+  .cert-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 48px; }
+  .cert-card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 32px 28px;
+  }
+  .cert-card-icon {
+    width: 44px; height: 44px;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--orange); font-size: 1.1rem; margin-bottom: 18px;
+  }
+  .cert-card-title { font-size: 1.02rem; font-weight: 800; color: var(--text); margin-bottom: 10px; }
+  .cert-card-desc  { font-size: 0.88rem; color: var(--text2); line-height: 1.65; }
+
+  /* ── CTA FINAL ── */
+  .final-cta { background: var(--text); padding: 96px 0; text-align: center; }
+  .final-cta .sec-title { color: var(--white); }
+  .final-cta .sec-sub   { color: #aaa; margin: 0 auto 40px; }
+  .final-cta .pill {
+    color: var(--orange);
+    background: rgba(244,92,27,0.15);
+    border-color: rgba(244,92,27,0.25);
+  }
+  .trust-row {
+    display: flex; align-items: center; justify-content: center;
+    gap: 28px; flex-wrap: wrap; margin-top: 24px;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 0.83rem; color: #888; font-weight: 500;
+  }
+  .trust-item i { color: var(--orange); font-size: 0.8rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--text);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 22px 0; text-align: center;
+    font-size: 0.8rem; color: #555;
+  }
+
+  hr.div { border: none; border-top: 1px solid var(--border); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 800px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-card  { max-width: 460px; }
+    .instructor-inner { grid-template-columns: 1fr; text-align: center; }
+    .instructor-photo { margin: 0 auto; }
+    .instructor-bio   { margin: 0 auto; }
+    .cert-inner { grid-template-columns: 1fr; }
+    .stats-row  { grid-template-columns: 1fr; }
+    .stat { border-right: none; border-bottom: 1px solid var(--border); }
+    .stat:last-child { border-bottom: none; }
+    .mod-body-inner { padding-left: 24px; }
+  }
+  @media (max-width: 500px) {
+    .section { padding: 60px 0; }
+    .hero    { padding: 56px 0 52px; }
+    .hero-title { font-size: 2.2rem; }
+    .btn.large  { font-size: 1rem; padding: 16px 30px; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<nav class="topbar">
+  <div class="container">
+    <a class="topbar-brand" href="#">
+      <!-- Reemplaza la ruta con tu URL de GitHub: https://raw.githubusercontent.com/TU_USUARIO/TU_REPO/main/logoacademy.png -->
+      <img class="topbar-logo" src="logoacademy.png" alt="TechnoAcademy logo">
+      <span class="topbar-name">Techno<span>Academy</span></span>
+    </a>
+    <a href="#inscripcion" class="btn btn-sm">Inscribirme</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+
+      <div>
+        <p class="hero-eyebrow">TechnoAcademy — Formacion Tecnica Practica</p>
+        <h1 class="hero-title">
+          Reparacion de<br>
+          Celulares<br>
+          <span class="orange">Nivel I</span>
+        </h1>
+        <p class="hero-desc">
+          Aprendes desde cero a diagnosticar, desarmar y reparar dispositivos moviles. Cinco modulos practicos con herramientas reales y certificacion incluida.
+        </p>
+        <a href="#inscripcion" class="btn">Quiero inscribirme</a>
+      </div>
+
+      <div>
+        <div class="hero-card">
+          <div class="hero-card-label">Datos del Curso</div>
+          <div class="card-row">
+            <div class="card-icon"><i class="fas fa-layer-group"></i></div>
+            <div>
+              <div class="card-row-label">Modulos</div>
+              <div class="card-row-value">5 modulos practicos</div>
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="card-icon"><i class="fas fa-tools"></i></div>
+            <div>
+              <div class="card-row-label">Enfoque</div>
+              <div class="card-row-value">100% practico con herramientas reales</div>
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="card-icon"><i class="fas fa-award"></i></div>
+            <div>
+              <div class="card-row-label">Certificacion</div>
+              <div class="card-row-value">Incluida al finalizar</div>
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="card-icon"><i class="fas fa-user-check"></i></div>
+            <div>
+              <div class="card-row-label">Requisitos</div>
+              <div class="card-row-value">Ninguno. Se empieza desde cero.</div>
+            </div>
+          </div>
+          <a href="#inscripcion" class="btn">Asegurar mi lugar</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat">
+        <span class="stat-num"><span class="orange">5</span></span>
+        <div class="stat-label">Modulos del programa</div>
+      </div>
+      <div class="stat">
+        <span class="stat-num"><span class="orange">0</span></span>
+        <div class="stat-label">Conocimientos previos requeridos</div>
+      </div>
+      <div class="stat">
+        <span class="stat-num"><span class="orange">1</span></span>
+        <div class="stat-label">Certificacion incluida</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODULOS ACORDEON -->
+<section class="section modulos" id="programa">
+  <div class="container">
+    <div class="sec-head">
+      <div class="pill">Programa</div>
+      <h2 class="sec-title">Lo que vas a aprender</h2>
+      <p class="sec-sub">Cinco modulos que te llevan desde los fundamentos hasta la reparacion avanzada de componentes. Hace clic en cada uno para ver los temas.</p>
+    </div>
+
+    <div class="modulos-list">
+
+      <div class="mod-item open">
+        <button class="mod-trigger" onclick="toggleMod(this)">
+          <div class="mod-bar"></div>
+          <span class="mod-num">Modulo I</span>
+          <span class="mod-title">Introduccion a la Telefonia Celular</span>
+          <div class="mod-chevron"><i class="fas fa-chevron-down"></i></div>
+        </button>
+        <div class="mod-body">
+          <div class="mod-body-inner">
+            <ul class="mod-topics">
+              <li><i class="fas fa-circle"></i>Introduccion a la telefonia celular</li>
+              <li><i class="fas fa-circle"></i>Partes constitutivas del celular</li>
+              <li><i class="fas fa-circle"></i>Diferentes pantallas: OLED, P-OLED, Soft OLED, Hard OLED, LCD</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mod-item">
+        <button class="mod-trigger" onclick="toggleMod(this)">
+          <div class="mod-bar"></div>
+          <span class="mod-num">Modulo II</span>
+          <span class="mod-title">Desmarcado y Herramientas</span>
+          <div class="mod-chevron"><i class="fas fa-chevron-down"></i></div>
+        </button>
+        <div class="mod-body">
+          <div class="mod-body-inner">
+            <ul class="mod-topics">
+              <li><i class="fas fa-circle"></i>Desmarcado de pantallas</li>
+              <li><i class="fas fa-circle"></i>Tecnicas de sellado</li>
+              <li><i class="fas fa-circle"></i>Reconocimiento de herramientas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mod-item">
+        <button class="mod-trigger" onclick="toggleMod(this)">
+          <div class="mod-bar"></div>
+          <span class="mod-num">Modulo III</span>
+          <span class="mod-title">Medicion y Equipamiento</span>
+          <div class="mod-chevron"><i class="fas fa-chevron-down"></i></div>
+        </button>
+        <div class="mod-body">
+          <div class="mod-body-inner">
+            <ul class="mod-topics">
+              <li><i class="fas fa-circle"></i>Medicion: voltaje, amperaje y escala de diodo</li>
+              <li><i class="fas fa-circle"></i>Reconocimiento de herramientas</li>
+              <li><i class="fas fa-circle"></i>Uso del multimetro</li>
+              <li><i class="fas fa-circle"></i>Uso de fuente de alimentacion</li>
+              <li><i class="fas fa-circle"></i>Uso Dock Test V8</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mod-item">
+        <button class="mod-trigger" onclick="toggleMod(this)">
+          <div class="mod-bar"></div>
+          <span class="mod-num">Modulo IV</span>
+          <span class="mod-title">Baterias y Carga</span>
+          <div class="mod-chevron"><i class="fas fa-chevron-down"></i></div>
+        </button>
+        <div class="mod-body">
+          <div class="mod-body-inner">
+            <ul class="mod-topics">
+              <li><i class="fas fa-circle"></i>Caida de tension de baterias</li>
+              <li><i class="fas fa-circle"></i>Reactivacion de baterias</li>
+              <li><i class="fas fa-circle"></i>Desfasaje de carga</li>
+              <li><i class="fas fa-circle"></i>Uso Dock Test digital automatico tipo C</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mod-item">
+        <button class="mod-trigger" onclick="toggleMod(this)">
+          <div class="mod-bar"></div>
+          <span class="mod-num">Modulo V</span>
+          <span class="mod-title">Microelectronica y Soldadura</span>
+          <div class="mod-chevron"><i class="fas fa-chevron-down"></i></div>
+        </button>
+        <div class="mod-body">
+          <div class="mod-body-inner">
+            <ul class="mod-topics">
+              <li><i class="fas fa-circle"></i>Uso del trinocular</li>
+              <li><i class="fas fa-circle"></i>Reconocimiento de herramientas e insumos de microelectronica</li>
+              <li><i class="fas fa-circle"></i>Uso de estacion de soldado</li>
+              <li><i class="fas fa-circle"></i>Cambio de pin de carga V8 y tipo C</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- INSTRUCTOR -->
+<section class="section instructor" id="instructor">
+  <div class="container">
+    <div class="instructor-inner">
+      <!-- Reemplaza con tu URL de GitHub: https://raw.githubusercontent.com/TU_USUARIO/TU_REPO/main/ProfeAle.png -->
+      <img
+        class="instructor-photo"
+        src="ProfeAle.png"
+        alt="Alejandro Villalon — Instructor TechnoAcademy"
+      >
+      <div>
+        <div class="pill">Tu instructor</div>
+        <div class="instructor-name">Alejandro Villalon</div>
+        <div class="instructor-role">Tecnico en Reparacion de Celulares</div>
+        <p class="instructor-bio">
+          Tecnico especializado en reparacion y mantenimiento de dispositivos moviles con amplia experiencia en el campo. Su enfoque es 100% practico: cada modulo esta disenado para que el alumno trabaje con herramientas y equipos reales desde la primera clase, adquiriendo habilidades aplicables de forma inmediata.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICACION -->
+<section class="section cert" id="certificacion">
+  <div class="container">
+    <div class="sec-head">
+      <div class="pill">Certificacion</div>
+      <h2 class="sec-title">Tu esfuerzo queda documentado</h2>
+      <p class="sec-sub">Al completar el curso recibis una certificacion que acredita tus conocimientos tecnicos.</p>
+    </div>
+    <div class="cert-inner">
+      <div class="cert-card">
+        <div class="cert-card-icon"><i class="fas fa-award"></i></div>
+        <div class="cert-card-title">Certificado de Aprobacion</div>
+        <p class="cert-card-desc">Acredita que completaste y aprobaste los cinco modulos del programa. Valido para presentar ante empleadores, clientes o instituciones educativas.</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-card-icon"><i class="fas fa-shield-alt"></i></div>
+        <div class="cert-card-title">Verificable y Autentico</div>
+        <p class="cert-card-desc">El certificado incluye un sistema de validacion digital que permite verificar su autenticidad al instante, garantizando transparencia y confianza.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final-cta" id="inscripcion">
+  <div class="container">
+    <div class="pill">Cupos disponibles</div>
+    <h2 class="sec-title">Listo para empezar?</h2>
+    <p class="sec-sub">Sin conocimientos previos. Sin excusas. Solo ganas de aprender una habilidad con salida laboral real.</p>
+    <a href="#" class="btn large">Inscribirme al curso</a>
+    <div class="trust-row">
+      <div class="trust-item"><i class="fas fa-check"></i>Sin requisitos previos</div>
+      <div class="trust-item"><i class="fas fa-check"></i>Practica con herramientas reales</div>
+      <div class="trust-item"><i class="fas fa-check"></i>Certificacion incluida</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    TechnoAcademy &nbsp;|&nbsp; Curso Reparacion de Celulares Nivel I &nbsp;|&nbsp; Instructor: Alejandro Villalon
+  </div>
+</footer>
+
+<script>
+  function toggleMod(btn) {
+    const item   = btn.closest('.mod-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.mod-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  /* scroll reveal */
+  const revEls = document.querySelectorAll('.mod-item, .cert-card, .stat');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const i = Array.from(revEls).indexOf(e.target);
+        e.target.style.transition = `opacity 0.42s ease ${(i % 4) * 0.07}s, transform 0.42s ease`;
+        e.target.style.opacity    = '1';
+        e.target.style.transform  = 'translateY(0)';
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  revEls.forEach(el => {
+    el.style.opacity   = '0';
+    el.style.transform = 'translateY(18px)';
+    io.observe(el);
+  });
+</script>
+
+</body>
+</html>
